@@ -52,6 +52,10 @@
 
   document.documentElement.classList.add('js');
 
+  // 再読み込み時もページの一番上から表示する
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) window.scrollTo(0, 0);
+
   /* ---------- 受付状態の判定 ---------- */
   // 表示確認用：URLに ?max=closed&lemino=open のように付けると状態を上書きできます
   var params = new URLSearchParams(location.search);
@@ -241,7 +245,9 @@
     var hidden = { hero: true, presale: false };
     var dockIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        hidden[en.target.id === 'presale' ? 'presale' : 'hero'] = en.isIntersecting;
+        if (en.target.id === 'presale') hidden.presale = en.isIntersecting;
+        // ファーストビューの申込ボタンを通り過ぎるまでは出さない
+        else hidden.hero = en.isIntersecting || en.boundingClientRect.top > 0;
       });
       dock.classList.toggle('is-show', !hidden.hero && !hidden.presale);
     });
