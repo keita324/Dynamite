@@ -54,7 +54,13 @@
 
   // 再読み込み時もページの一番上から表示する
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (!location.hash) window.scrollTo(0, 0);
+  // URLに #presale などが残っていると更新時にそこへ飛ぶため、取り除いて先頭へ
+  function toTop() {
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo(0, 0);
+  }
+  toTop();
+  window.addEventListener('pageshow', toTop);
 
   /* ---------- 受付状態の判定 ---------- */
   // 表示確認用：URLに ?max=closed&lemino=open のように付けると状態を上書きできます
@@ -142,6 +148,16 @@
     if (a.getAttribute('aria-disabled') === 'true') {
       e.preventDefault();
       return;
+    }
+    // ページ内リンクはURLを変えずにスクロールする（更新時に先頭へ戻れるように）
+    var href = a.getAttribute('href') || '';
+    if (href.length > 1 && href.charAt(0) === '#') {
+      var target = document.getElementById(href.slice(1));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView();
+        return;
+      }
     }
     if (a.hasAttribute('data-link') && !LINKS[a.getAttribute('data-link')]) {
       e.preventDefault();
