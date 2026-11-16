@@ -8,7 +8,8 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/kv.webp">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -17,136 +18,97 @@
 
   <!-- ========== HEADER ========== -->
   <header class="header" id="top">
-    <div class="header__inner">
-      <a class="header__logo" href="#top" aria-label="BTS LIVE 20●● in JAPAN チケット情報 トップ">
-        <span class="header__logo-main">BTS</span>
-        <span class="header__logo-sub">TICKET<br>INFORMATION</span>
-      </a>
+    <a class="header__logo" href="#top" aria-label="BTS LIVE 20●● in JAPAN トップ">BTS<span>TICKET</span></a>
 
-      <nav class="nav" id="nav" aria-label="ページ内メニュー">
-        <ul class="nav__list">
-          <li><a href="#overview"><span class="en">OVERVIEW</span><span class="ja">公演概要</span></a></li>
-          <li><a href="#ticket"><span class="en">TICKET</span><span class="ja">チケット概要</span></a></li>
-          <li><a href="#presale"><span class="en">PRESALE</span><span class="ja">先行受付</span></a></li>
-          <li><a href="#notes"><span class="en">NOTES</span><span class="ja">注意事項</span></a></li>
-          <li><a href="#faq"><span class="en">FAQ</span><span class="ja">よくあるご質問</span></a></li>
-        </ul>
-      </nav>
+    <nav class="nav" id="nav" aria-label="ページ内メニュー">
+      <ul class="nav__list">
+        <li><a href="#overview"><span class="en">Information</span>公演概要</a></li>
+        <li><a href="#ticket"><span class="en">Ticket</span>チケット</a></li>
+        <li><a href="#presale"><span class="en">Presale</span>先行受付</a></li>
+        <li><a href="#notes"><span class="en">Notes</span>注意事項</a></li>
+        <li><a href="#faq"><span class="en">FAQ</span>よくあるご質問</a></li>
+      </ul>
+    </nav>
 
-      <a class="btn btn--primary btn--sm header__cta" href="#presale">先行に申し込む</a>
+    <a class="header__cta" href="#presale">先行に申し込む</a>
 
-      <button class="menu-btn" id="menuBtn" type="button" aria-controls="nav" aria-expanded="false" aria-label="メニューを開く">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-controls="nav" aria-expanded="false" aria-label="メニューを開く">
+      <span></span><span></span>
+    </button>
   </header>
 
   <main>
 
     <!-- ========== 1. FIRST VIEW ========== -->
     <section class="hero">
-      <div class="hero__inner">
-        <div class="hero__text">
-          <p class="hero__label"><span>TICKET INFORMATION</span>チケット情報</p>
-          <h1 class="hero__title">
-            <span class="hero__title-artist">BTS</span>
-            <span class="hero__title-tour">LIVE 20●● <em>in JAPAN</em></span>
-          </h1>
-          <dl class="hero__meta">
-            <div><dt>DATE</dt><dd>20●●.●●.●●<small>(●)</small></dd></div>
-            <div><dt>VENUE</dt><dd>●●●●スタジアム</dd></div>
-          </dl>
-          <div class="hero__cta">
-            <p class="hero__badge" id="heroBadge"><span>ドコモMAX・Leminoプレミアム</span> <span>先行受付中！</span></p>
-            <a class="btn btn--primary btn--lg" href="#presale">先行受付をチェックする<span class="btn__arrow btn__arrow--down" aria-hidden="true"></span></a>
-          </div>
-        </div>
-
-        <!-- キービジュアル：画像を入れる場合は .hero__kv 内に <img src="..." alt="..."> を追加してください -->
-        <div class="hero__kv" role="img" aria-label="キービジュアル（アーティスト写真を掲載予定）">
-          <span class="hero__kv-word" aria-hidden="true">BTS</span>
-          <span class="hero__kv-note">KEY VISUAL<small>アーティスト写真 掲載予定</small></span>
+      <!-- キービジュアル：差し替える場合は img/kv.webp を置き換えてください -->
+      <div class="hero__photo">
+        <div class="hero__photo-move" id="kvMove">
+          <img src="img/kv.webp" width="2000" height="1323" alt="BTS アーティスト写真" fetchpriority="high">
         </div>
       </div>
 
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <span>DOCOMO MAX PRESALE</span><i></i><span>LEMINO PREMIUM PRESALE</span><i></i><span>BTS LIVE 20●● IN JAPAN</span><i></i>
-          <span>DOCOMO MAX PRESALE</span><i></i><span>LEMINO PREMIUM PRESALE</span><i></i><span>BTS LIVE 20●● IN JAPAN</span><i></i>
-          <span>DOCOMO MAX PRESALE</span><i></i><span>LEMINO PREMIUM PRESALE</span><i></i><span>BTS LIVE 20●● IN JAPAN</span><i></i>
-          <span>DOCOMO MAX PRESALE</span><i></i><span>LEMINO PREMIUM PRESALE</span><i></i><span>BTS LIVE 20●● IN JAPAN</span><i></i>
+      <div class="hero__body">
+        <h1 class="hero__title">
+          <span class="line"><span data-split>BTS</span></span>
+          <span class="line line--sub"><span data-split>LIVE 20●● in JAPAN</span></span>
+        </h1>
+        <p class="hero__meta rise" style="--d:.55s">
+          <span>20●●.●●.●●<small>(●)</small></span>
+          <span>●●●●スタジアム</span>
+        </p>
+        <div class="hero__cta rise" style="--d:.7s">
+          <p class="hero__badge" id="heroBadge"><span>ドコモMAX・Leminoプレミアム</span> <span>先行受付中</span></p>
+          <a class="btn btn--primary btn--lg" href="#presale">先行受付をチェックする<span class="btn__arrow btn__arrow--down" aria-hidden="true"></span></a>
         </div>
       </div>
     </section>
 
     <!-- ========== 2. 公演概要 ========== -->
     <section class="section" id="overview">
-      <div class="container">
-        <h2 class="sec-head"><span class="sec-head__no">01</span><span class="sec-head__en">OVERVIEW</span><span class="sec-head__ja">公演概要</span></h2>
+      <div class="container container--narrow">
+        <h2 class="sec-head"><span class="sec-head__en"><span data-split>Information</span></span><span class="sec-head__ja">公演概要</span></h2>
 
-        <dl class="info reveal">
-          <div class="info__row"><dt>公演名</dt><dd><strong>BTS LIVE 20●● in JAPAN</strong></dd></div>
-          <div class="info__row"><dt>日時</dt><dd>20●●年●月●日(●) <span class="nowrap">開場 ●●:●● ／ 開演 ●●:●●</span></dd></div>
-          <div class="info__row"><dt>会場</dt><dd>●●●●スタジアム（●●県）</dd></div>
-          <div class="info__row"><dt>出演</dt><dd>BTS</dd></div>
-          <div class="info__row"><dt>主催</dt><dd>●●●●</dd></div>
+        <dl class="info">
+          <div class="info__row reveal"><dt>公演名</dt><dd>BTS LIVE 20●● in JAPAN</dd></div>
+          <div class="info__row reveal"><dt>日時</dt><dd>20●●年●月●日(●) <span class="nowrap">開場 ●●:●● ／ 開演 ●●:●●</span></dd></div>
+          <div class="info__row reveal"><dt>会場</dt><dd>●●●●スタジアム（●●県）</dd></div>
+          <div class="info__row reveal"><dt>出演</dt><dd>BTS</dd></div>
+          <div class="info__row reveal"><dt>主催</dt><dd>●●●●</dd></div>
         </dl>
       </div>
     </section>
 
     <!-- ========== 3. チケット概要 ========== -->
-    <section class="section section--tint" id="ticket">
+    <section class="section" id="ticket">
       <div class="container">
-        <h2 class="sec-head"><span class="sec-head__no">02</span><span class="sec-head__en">TICKET</span><span class="sec-head__ja">チケット概要</span></h2>
+        <h2 class="sec-head"><span class="sec-head__en"><span data-split>Ticket</span></span><span class="sec-head__ja">チケット概要</span></h2>
 
-        <div class="ticket reveal">
-          <div class="ticket__col">
-            <ul class="chips">
-              <li><span>販売方式</span><b>抽選</b></li>
-              <li><span>枚数制限</span><b>お一人さま ● 枚まで</b></li>
+        <div class="ticket">
+          <div class="ticket__col reveal">
+            <ul class="price">
+              <li><span class="price__name"><i class="sw sw--s"></i>S指定席</span><span class="price__val"><small>¥</small>●●,●●●</span></li>
+              <li><span class="price__name"><i class="sw sw--a"></i>指定席</span><span class="price__val"><small>¥</small>●●,●●●</span></li>
+              <li><span class="price__name"><i class="sw sw--b"></i>注釈付き指定席</span><span class="price__val"><small>¥</small>●●,●●●</span></li>
             </ul>
-
-            <table class="price">
-              <caption class="vh">席種と価格</caption>
-              <thead>
-                <tr><th scope="col">席種</th><th scope="col">価格（税込）</th></tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row"><i class="sw sw--s"></i>S指定席</th><td><span class="yen">¥</span>●●,●●●</td></tr>
-                <tr><th scope="row"><i class="sw sw--a"></i>指定席</th><td><span class="yen">¥</span>●●,●●●</td></tr>
-                <tr><th scope="row"><i class="sw sw--b"></i>注釈付き指定席</th><td><span class="yen">¥</span>●●,●●●</td></tr>
-              </tbody>
-            </table>
-            <ul class="kome">
-              <li>別途、各種手数料がかかります。</li>
-              <li>注釈付き指定席は、ステージや演出の一部が見えにくい場合があります。</li>
-            </ul>
+            <p class="ticket__rule">抽選販売<i></i>お一人さま ● 枚まで<i></i>価格は税込</p>
           </div>
 
-          <figure class="ticket__col seatmap">
-            <svg viewBox="0 0 480 340" role="img" aria-label="座席図イメージ：ステージ正面のアリーナがS指定席、スタンドが指定席、ステージサイドが注釈付き指定席">
+          <figure class="ticket__col seatmap reveal" style="--d:.12s">
+            <svg viewBox="0 0 480 320" role="img" aria-label="座席図イメージ：アリーナがS指定席、スタンドが指定席、ステージサイドが注釈付き指定席">
               <defs>
-                <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <rect width="8" height="8" fill="#fff"/><rect width="3" height="8" fill="#111"/>
+                <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <rect width="7" height="7" fill="#fff"/><rect width="2.5" height="7" fill="#111"/>
                 </pattern>
-                <clipPath id="oval"><rect x="20" y="20" width="440" height="300" rx="150"/></clipPath>
+                <clipPath id="oval"><rect x="10" y="10" width="460" height="300" rx="150"/></clipPath>
               </defs>
-              <!-- スタンド（指定席） -->
-              <rect x="20" y="20" width="440" height="300" rx="150" fill="#111"/>
-              <!-- ステージサイド（注釈付き指定席） -->
-              <g clip-path="url(#oval)"><rect x="330" y="0" width="150" height="340" fill="url(#hatch)"/></g>
-              <rect x="20" y="20" width="440" height="300" rx="150" fill="none" stroke="#111" stroke-width="4"/>
-              <!-- フィールド -->
-              <rect x="78" y="78" width="324" height="184" rx="92" fill="#fff" stroke="#111" stroke-width="4"/>
-              <!-- アリーナ（S指定席） -->
-              <rect x="112" y="104" width="190" height="132" rx="6" fill="#e6002d"/>
-              <!-- ステージ -->
-              <rect x="318" y="104" width="46" height="132" rx="4" fill="#111"/>
-              <text x="341" y="170" fill="#fff" font-size="15" font-weight="800" text-anchor="middle" dominant-baseline="middle" transform="rotate(90 341 170)" letter-spacing="3">STAGE</text>
-              <text x="207" y="164" fill="#fff" font-size="20" font-weight="900" text-anchor="middle">アリーナ</text>
-              <text x="207" y="188" fill="#fff" font-size="14" font-weight="700" text-anchor="middle">S指定席</text>
-              <text x="207" y="54" fill="#fff" font-size="14" font-weight="700" text-anchor="middle">スタンド：指定席</text>
-              <text x="207" y="298" fill="#fff" font-size="14" font-weight="700" text-anchor="middle">スタンド：指定席</text>
+              <rect x="10" y="10" width="460" height="300" rx="150" fill="#111"/>
+              <g clip-path="url(#oval)"><rect x="345" y="0" width="140" height="320" fill="url(#hatch)"/></g>
+              <rect x="10" y="10" width="460" height="300" rx="150" fill="none" stroke="#111" stroke-width="3"/>
+              <rect x="70" y="70" width="340" height="180" rx="90" fill="#fff"/>
+              <rect x="108" y="98" width="196" height="124" rx="4" fill="#e6002d"/>
+              <rect x="320" y="98" width="40" height="124" rx="3" fill="#111"/>
+              <text x="340" y="160" fill="#fff" font-size="13" font-weight="700" text-anchor="middle" dominant-baseline="middle" transform="rotate(90 340 160)" letter-spacing="3">STAGE</text>
             </svg>
             <figcaption>
               <ul class="legend">
@@ -154,7 +116,7 @@
                 <li><i class="sw sw--a"></i>指定席</li>
                 <li><i class="sw sw--b"></i>注釈付き指定席</li>
               </ul>
-              <p class="kome-inline">※ 座席図はイメージです。実際のレイアウトとは異なる場合があります。</p>
+              <p class="small">※ 座席図はイメージです。</p>
             </figcaption>
           </figure>
         </div>
@@ -164,80 +126,61 @@
     <!-- ========== 4. 先行受付（メイン） ========== -->
     <section class="section section--presale" id="presale">
       <div class="container">
-        <h2 class="sec-head"><span class="sec-head__no">03</span><span class="sec-head__en">PRESALE</span><span class="sec-head__ja">先行受付</span></h2>
-        <p class="lead">ご契約中のサービスに合わせて、<b>2つの先行受付</b>からお申込みいただけます。</p>
+        <h2 class="sec-head"><span class="sec-head__en"><span data-split>Presale</span></span><span class="sec-head__ja">先行受付</span></h2>
 
         <div class="presale">
 
           <!-- ドコモMAX 先行 -->
           <article class="card reveal" data-presale="max" data-status="open">
-            <header class="card__head">
-              <span class="status" data-role="status">受付中</span>
-              <h3 class="card__title"><span class="card__en">docomo MAX</span>ドコモMAX 先行</h3>
-            </header>
-            <dl class="card__info">
-              <div><dt>対象</dt><dd>ドコモMAXをご契約中のお客さま</dd></div>
-              <div><dt>受付期間</dt><dd data-role="period">20●●/●/●(●) ●●:00 〜 ●/●(●) 23:59</dd></div>
-              <div><dt>販売方式</dt><dd>抽選</dd></div>
+            <span class="status" data-role="status">受付中</span>
+            <h3 class="card__title">ドコモMAX 先行</h3>
+            <p class="card__target">ドコモMAXをご契約中のお客さま</p>
+            <dl class="card__period">
+              <dt>受付期間</dt>
+              <dd data-role="period">20●●/●/●(●) ●●:00 〜 ●/●(●) 23:59</dd>
             </dl>
-            <div class="card__actions">
-              <a class="btn btn--primary btn--lg btn--block" href="#" data-role="apply" data-link="maxApply">ドコモMAX先行に申し込む<span class="btn__arrow" aria-hidden="true"></span></a>
-              <p class="card__hint">dアカウントでのログインと契約状況の確認があります</p>
-              <div class="card__sub">
-                <span>まだご契約でない方</span>
-                <a class="btn btn--ghost btn--block" href="#" data-link="maxContract">ドコモMAX 契約はこちら<span class="btn__arrow" aria-hidden="true"></span></a>
-              </div>
-            </div>
+            <a class="btn btn--primary btn--lg btn--block" href="#" data-role="apply" data-link="maxApply">ドコモMAX先行に申し込む<span class="btn__arrow" aria-hidden="true"></span></a>
+            <a class="btn btn--ghost btn--block" href="#" data-link="maxContract">ドコモMAX契約はこちら<span class="btn__arrow" aria-hidden="true"></span></a>
           </article>
 
           <!-- Leminoプレミアム 先行 -->
-          <article class="card reveal" data-presale="lemino" data-status="before">
-            <header class="card__head">
-              <span class="status" data-role="status">受付前</span>
-              <h3 class="card__title"><span class="card__en">Lemino PREMIUM</span>Leminoプレミアム 先行</h3>
-            </header>
-            <dl class="card__info">
-              <div><dt>対象</dt><dd>Leminoプレミアムをご契約中のお客さま</dd></div>
-              <div><dt>受付期間</dt><dd data-role="period">20●●/●/●(●) ●●:00 〜 ●/●(●) 23:59</dd></div>
-              <div><dt>販売方式</dt><dd>抽選</dd></div>
+          <article class="card reveal" style="--d:.12s" data-presale="lemino" data-status="before">
+            <span class="status" data-role="status">受付前</span>
+            <h3 class="card__title">Leminoプレミアム 先行</h3>
+            <p class="card__target">Leminoプレミアムをご契約中のお客さま</p>
+            <dl class="card__period">
+              <dt>受付期間</dt>
+              <dd data-role="period">20●●/●/●(●) ●●:00 〜 ●/●(●) 23:59</dd>
             </dl>
-            <div class="card__actions">
-              <a class="btn btn--primary btn--lg btn--block" href="#" data-role="apply" data-link="leminoApply">Leminoプレミアム先行に申し込む<span class="btn__arrow" aria-hidden="true"></span></a>
-              <p class="card__hint">dアカウントでのログインと契約状況の確認があります</p>
-              <div class="card__sub">
-                <span>まだご契約でない方</span>
-                <a class="btn btn--ghost btn--block" href="#" data-link="leminoContract">Leminoプレミアム 契約はこちら<span class="btn__arrow" aria-hidden="true"></span></a>
-              </div>
-            </div>
+            <a class="btn btn--primary btn--lg btn--block" href="#" data-role="apply" data-link="leminoApply">Leminoプレミアム先行に申し込む<span class="btn__arrow" aria-hidden="true"></span></a>
+            <a class="btn btn--ghost btn--block" href="#" data-link="leminoContract">Leminoプレミアム契約はこちら<span class="btn__arrow" aria-hidden="true"></span></a>
           </article>
         </div>
 
         <!-- お申込みの流れ -->
-        <div class="flow reveal">
-          <h3 class="flow__title"><span>HOW TO APPLY</span>お申込みの流れ</h3>
+        <div class="flow">
+          <h3 class="flow__title reveal">お申込みの流れ</h3>
           <ol class="flow__list">
-            <li><span class="flow__no">STEP 1</span><b>申込ボタンをタップ</b><p>ご契約中のサービスの先行受付を選択します。</p></li>
-            <li><span class="flow__no">STEP 2</span><b>dアカウントでログイン</b><p>ご契約に紐づくdアカウントで認証します。</p></li>
-            <li><span class="flow__no">STEP 3</span><b>ご契約状況の確認</b><p>対象サービスのご契約を自動で確認します。</p></li>
-            <li><span class="flow__no">STEP 4</span><b>dチケットで抽選申込</b><p>確認後、チケット購入サイトへ進みます。</p></li>
+            <li class="reveal" style="--d:0s"><span>1</span>申込ボタンを押す</li>
+            <li class="reveal" style="--d:.1s"><span>2</span>dアカウントでログイン</li>
+            <li class="reveal" style="--d:.2s"><span>3</span>ご契約状況を自動確認</li>
+            <li class="reveal" style="--d:.3s"><span>4</span>dチケットで抽選申込</li>
           </ol>
-          <p class="flow__note">ご契約が確認できなかった場合は、各サービスのご契約ページをご案内します。ご契約後、あらためて本ページからお申込みください。</p>
+          <p class="small flow__note reveal">※ ご契約が確認できなかった場合は、各サービスのご契約ページをご案内します。</p>
         </div>
       </div>
     </section>
 
     <!-- ========== 5. 注意事項 ========== -->
-    <section class="section section--tint" id="notes">
+    <section class="section" id="notes">
       <div class="container container--narrow">
-        <h2 class="sec-head"><span class="sec-head__no">04</span><span class="sec-head__en">NOTES</span><span class="sec-head__ja">お申込み時の注意事項</span></h2>
+        <h2 class="sec-head"><span class="sec-head__en"><span data-split>Notes</span></span><span class="sec-head__ja">お申込み時の注意事項</span></h2>
 
         <ul class="notes reveal">
-          <li>お申込みにはdアカウントが必要です。対象サービスをご契約中のdアカウントでログインしてください。</li>
-          <li>本先行は抽選制です。お申込みの順番は当落に影響しません。</li>
-          <li>ドコモMAX先行とLeminoプレミアム先行は、受付サイトが異なります。必ず本ページの各申込ボタンからお進みください。</li>
-          <li>重複申込・重複当選の取り扱い：●●●●●●●●●●●●●●●●●●●●（確定後に掲載）</li>
-          <li>受付開始直後・終了間際はアクセスが集中し、つながりにくくなる場合があります。時間に余裕をもってお申込みください。</li>
-          <li>●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●</li>
+          <li>お申込みには、対象サービスをご契約中のdアカウントでのログインが必要です。</li>
+          <li>ドコモMAX先行とLeminoプレミアム先行は受付サイトが異なります。必ず本ページの各申込ボタンからお進みください。</li>
+          <li>重複申込・重複当選の取り扱い：●●●●●●●●●●●●●●●●（確定後に掲載）</li>
+          <li>●●●●●●●●●●●●●●●●●●●●●●●●●●</li>
         </ul>
       </div>
     </section>
@@ -245,54 +188,38 @@
     <!-- ========== 6. よくあるご質問 ========== -->
     <section class="section" id="faq">
       <div class="container container--narrow">
-        <h2 class="sec-head"><span class="sec-head__no">05</span><span class="sec-head__en">FAQ</span><span class="sec-head__ja">よくあるご質問</span></h2>
+        <h2 class="sec-head"><span class="sec-head__en"><span data-split>FAQ</span></span><span class="sec-head__ja">よくあるご質問</span></h2>
 
         <div class="faq reveal">
           <details>
-            <summary><span class="q">Q</span>申込ボタンを押したら、契約ページが表示されました。</summary>
-            <div class="a"><span class="q">A</span><p>ログインしたdアカウントで対象サービスのご契約が確認できなかった場合に表示されます。ご契約に紐づくdアカウントでログインしているかをご確認ください。未契約の場合は、ご契約後にあらためて本ページからお申込みください。</p></div>
+            <summary>申込ボタンを押したら、契約ページが表示されました。</summary>
+            <div class="a"><p>ログインしたdアカウントで対象サービスのご契約が確認できなかった場合に表示されます。ご契約に紐づくdアカウントでログインしているかをご確認ください。</p></div>
           </details>
           <details>
-            <summary><span class="q">Q</span>これから契約しても、先行に申し込めますか？</summary>
-            <div class="a"><span class="q">A</span><p>●●●●●●●●●●●●●●●●●●●●●●●●●●●●（確定後に掲載）</p></div>
+            <summary>これから契約しても、先行に申し込めますか？</summary>
+            <div class="a"><p>●●●●●●●●●●●●●●●●●●●●●●（確定後に掲載）</p></div>
           </details>
           <details>
-            <summary><span class="q">Q</span>ドコモMAXとLeminoプレミアムの両方を契約しています。両方の先行に申し込めますか？</summary>
-            <div class="a"><span class="q">A</span><p>●●●●●●●●●●●●●●●●●●●●●●●●●●●●（確定後に掲載）</p></div>
+            <summary>両方のサービスを契約しています。両方の先行に申し込めますか？</summary>
+            <div class="a"><p>●●●●●●●●●●●●●●●●●●●●●●（確定後に掲載）</p></div>
           </details>
           <details>
-            <summary><span class="q">Q</span>dアカウントのID・パスワードがわかりません。</summary>
-            <div class="a"><span class="q">A</span><p>dアカウントのログイン画面から、IDの確認・パスワードの再設定ができます。<a href="#" data-link="daccountHelp">dアカウントのヘルプはこちら</a></p></div>
-          </details>
-          <details>
-            <summary><span class="q">Q</span>申込ページをブックマークして、あとから直接アクセスできますか？</summary>
-            <div class="a"><span class="q">A</span><p>直接アクセスはできません。お手数ですが、毎回本ページの申込ボタンからお進みください。</p></div>
+            <summary>dアカウントのID・パスワードがわかりません。</summary>
+            <div class="a"><p>dアカウントのログイン画面から、IDの確認・パスワードの再設定ができます。<a href="#" data-link="daccountHelp">dアカウントのヘルプ</a></p></div>
           </details>
         </div>
-      </div>
-    </section>
-
-    <!-- ========== CLOSING CTA ========== -->
-    <section class="closing">
-      <div class="container">
-        <p class="closing__en" aria-hidden="true">DON'T MISS IT</p>
-        <p class="closing__ja">先行受付のお申込みはこちらから</p>
-        <a class="btn btn--primary btn--lg" href="#presale">先行受付をチェックする<span class="btn__arrow btn__arrow--up" aria-hidden="true"></span></a>
       </div>
     </section>
   </main>
 
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
-    <div class="container">
-      <ul class="footer__links">
-        <li><a href="#" data-link="terms">利用規約</a></li>
-        <li><a href="#" data-link="privacy">プライバシーポリシー</a></li>
-        <li><a href="#" data-link="contact">お問い合わせ</a></li>
-      </ul>
-      <p class="footer__op">運営：●●●●</p>
-      <p class="footer__copy">&copy; ●●●●</p>
-    </div>
+    <ul class="footer__links">
+      <li><a href="#" data-link="terms">利用規約</a></li>
+      <li><a href="#" data-link="privacy">プライバシーポリシー</a></li>
+      <li><a href="#" data-link="contact">お問い合わせ</a></li>
+    </ul>
+    <p class="footer__op">運営：●●●●</p>
   </footer>
 
   <!-- スマホ用 固定申込ボタン -->

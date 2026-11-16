@@ -101,7 +101,7 @@
     var anyBefore = statuses.indexOf('before') !== -1;
     var down = '<span class="btn__arrow btn__arrow--down" aria-hidden="true"></span>';
     if (anyOpen) {
-      badge.innerHTML = '<span>ドコモMAX・Leminoプレミアム</span> <span>先行受付中！</span>';
+      badge.innerHTML = '<span>ドコモMAX・Leminoプレミアム</span> <span>先行受付中</span>';
       badge.classList.remove('is-off');
       dockBtn.innerHTML = '先行に申し込む' + down;
     } else if (anyBefore) {
@@ -165,12 +165,52 @@
     if (e.key === 'Escape') setMenu(false);
   });
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 860) setMenu(false);
+    if (window.innerWidth > 760) setMenu(false);
   });
 
-  /* ---------- スクロール連動 ---------- */
+  /* ---------- アニメーション ---------- */
+  // 見出し・タイトルを1文字ずつに分割
+  document.querySelectorAll('[data-split]').forEach(function (el) {
+    var text = el.textContent;
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    Array.prototype.forEach.call(text, function (c, i) {
+      var s = document.createElement('span');
+      s.className = c === ' ' ? 'ch sp' : 'ch';
+      s.setAttribute('aria-hidden', 'true');
+      s.style.setProperty('--i', i);
+      s.textContent = c === ' ' ? ' ' : c;
+      el.appendChild(s);
+    });
+  });
+
+  // ファーストビューの登場（アー写の読み込み完了を待つ。遅い場合も2秒で開始）
+  var kv = document.querySelector('.hero__photo img');
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    requestAnimationFrame(function () { document.documentElement.classList.add('is-loaded'); });
+  }
+  if (kv.complete) start(); else { kv.addEventListener('load', start); kv.addEventListener('error', start); }
+  setTimeout(start, 2000);
+
+  // アー写のパララックス（PCのみ）
+  var kvMove = document.getElementById('kvMove');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ticking = false;
+  function parallax() {
+    ticking = false;
+    if (window.innerWidth <= 760 || reduce) { kvMove.style.transform = ''; return; }
+    var y = Math.min(window.scrollY, window.innerHeight);
+    kvMove.style.transform = 'translate3d(0,' + (y * 0.1).toFixed(1) + 'px,0)';
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(parallax); }
+  }, { passive: true });
+
   if ('IntersectionObserver' in window) {
-    // ふわっと表示
+    // スクロールで登場
     var revealIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
@@ -178,8 +218,8 @@
           revealIO.unobserve(en.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { revealIO.observe(el); });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.reveal, .sec-head').forEach(function (el) { revealIO.observe(el); });
 
     // ナビの現在地
     var navLinks = {};
@@ -199,16 +239,15 @@
     // スマホ固定ボタン：ファーストビューと先行受付セクションでは隠す
     var dock = document.getElementById('dock');
     var hidden = { hero: true, presale: false };
-    function updateDock() { dock.classList.toggle('is-show', !hidden.hero && !hidden.presale); }
     var dockIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         hidden[en.target.id === 'presale' ? 'presale' : 'hero'] = en.isIntersecting;
       });
-      updateDock();
+      dock.classList.toggle('is-show', !hidden.hero && !hidden.presale);
     });
     dockIO.observe(document.querySelector('.hero__cta'));
     dockIO.observe(document.getElementById('presale'));
   } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+    document.querySelectorAll('.reveal, .sec-head').forEach(function (el) { el.classList.add('is-in'); });
   }
 })();
