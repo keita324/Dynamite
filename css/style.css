@@ -97,10 +97,7 @@ img, svg { max-width: 100%; display: block; }
 .hero__meta small { font-size: .7em; margin-left: 2px; }
 .hero__cta { align-self: start; margin-top: 16px; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
 .hero__badge { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0 8px; font-size: 15px; font-weight: 900; color: var(--red); line-height: 1.5; }
-.hero__badge::before { content: ""; width: 9px; height: 9px; margin-right: 2px; border-radius: 50%; background: currentColor; animation: pulse 1.8s infinite; }
 .hero__badge.is-off { color: var(--ink); }
-.hero__badge.is-off::before { animation: none; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(230,0,45,.45); } 70%, 100% { box-shadow: 0 0 0 10px rgba(230,0,45,0); } }
 
 /* ---------- Sections ---------- */
 .section { padding: 104px 0 0; }
@@ -140,11 +137,8 @@ img, svg { max-width: 100%; display: block; }
 .card[data-status="open"] { border-color: var(--red); box-shadow: inset 0 6px 0 var(--red); }
 .card[data-status="closed"] { border-color: #bbb; color: #777; }
 .status { display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px 5px; border-radius: 999px; font-size: 13px; font-weight: 900; line-height: 1.4; letter-spacing: .08em; background: #ececec; color: #666; }
-.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 .card[data-status="open"] .status { background: var(--red); color: var(--white); }
-.card[data-status="open"] .status::before { animation: blink 1.4s infinite; }
 .card[data-status="closed"] .status { background: var(--ink); color: var(--white); }
-@keyframes blink { 50% { opacity: .2; } }
 .card__title { margin-top: 18px; font-size: clamp(22px, 2.5vw, 28px); font-weight: 900; line-height: 1.35; }
 .card__target { margin-top: 4px; font-size: 14px; color: var(--gray); }
 .card__period { width: 100%; margin: 24px 0 28px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -217,20 +211,17 @@ img, svg { max-width: 100%; display: block; }
 .js .sec-head.is-in .sec-head__ja { opacity: 1; }
 .js .sec-head.is-in .sec-head__ja::before { transform: none; }
 
-/* ファーストビュー：赤い幕が横切ってアー写が現れる */
-.js .hero__photo::after { content: ""; position: absolute; inset: 0; background: var(--red); transform: scaleX(0); }
-.js .hero__photo img { opacity: 0; transform: scale(1.14); }
-.js.is-loaded .hero__photo::after { animation: curtain 1.3s cubic-bezier(.77, 0, .18, 1) both; }
-.js.is-loaded .hero__photo img { animation: kvIn 2.6s var(--ease) .65s both; }
-@keyframes curtain {
-  0% { transform: scaleX(0); transform-origin: left; }
-  50% { transform: scaleX(1); transform-origin: left; }
-  50.01% { transform: scaleX(1); transform-origin: right; }
-  100% { transform: scaleX(0); transform-origin: right; }
-}
-@keyframes kvIn { from { opacity: 1; transform: scale(1.14); } to { opacity: 1; transform: scale(1); } }
-.js .hero [data-split] .ch { transition-delay: calc(var(--i) * 35ms + var(--base, 0ms) + 700ms); }
-.js .hero .rise { transition-delay: calc(var(--d, 0s) + .9s); }
+/* ファーストビュー：7枚の白いパネルが左から順にめくれてアー写が現れる */
+.hero__blinds { display: none; }
+.js .hero__blinds { display: flex; position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.hero__blinds i { flex: 1; margin-right: -1px; background: var(--white); transform-origin: bottom; transition: transform 1.25s cubic-bezier(.76, 0, .24, 1); transition-delay: calc(var(--n) * 85ms + 150ms); }
+.hero__blinds i:last-child { margin-right: 0; }
+.js.is-loaded .hero__blinds i { transform: scaleY(0); }
+.js .hero__photo img { transform: scale(1.16); }
+.js.is-loaded .hero__photo img { animation: kvIn 3.2s var(--ease) .15s both; }
+@keyframes kvIn { from { transform: scale(1.16); } to { transform: scale(1); } }
+.js .hero [data-split] .ch { transition-delay: calc(var(--i) * 35ms + var(--base, 0ms) + 900ms); }
+.js .hero .rise { transition-delay: calc(var(--d, 0s) + 1.1s); }
 
 /* 申込の流れ：線が伸びる */
 .js .flow__list li:not(:last-child)::after { transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease); transition-delay: calc(var(--d, 0s) + .25s); }
@@ -325,5 +316,6 @@ img, svg { max-width: 100%; display: block; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal, .js .rise, .js [data-split] .ch, .js .hero__photo img, .js .sec-head__ja { opacity: 1; transform: none; }
+  .js .hero__blinds { display: none; }
   .js .sec-head__ja::before, .js .flow__list li:not(:last-child)::after { transform: none; }
 }

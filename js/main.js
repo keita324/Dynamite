@@ -194,7 +194,10 @@
   function start() {
     if (started) return;
     started = true;
-    requestAnimationFrame(function () { document.documentElement.classList.add('is-loaded'); });
+    // 初期状態を一度描画させてから開始する（でないと動きが出ない）
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { document.documentElement.classList.add('is-loaded'); });
+    });
   }
   if (kv.complete) start(); else { kv.addEventListener('load', start); kv.addEventListener('error', start); }
   setTimeout(start, 2000);
